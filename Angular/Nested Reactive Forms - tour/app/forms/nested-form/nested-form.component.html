@@ -1,0 +1,31 @@
+<h4>Nested Trip Reactive Form: <button class="btn btn-link" (click)="fnGetTrip()" type="button">{{this.fnModAncTag()}}</button>
+</h4>
+<div class="row">
+  <div class="col-md-12">
+    <section>
+      <form [formGroup]="tripForm" (submit)="fnOnFormSave()">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Trip Name" formControlName="name">
+        </div>
+        <section formArrayName="cities" style="border: 1px solid #ccc; padding: 8px;">
+          <b>Cities: <button class="btn btn-default btn-link" type="button" (click)="fnOnAddCity()">+ new City</button>
+          </b>
+          <div class="form-group" *ngFor="let city of fnGetCity(); let i = index" [formGroupName]="i">
+            <input type="text" class="form-control" placeholder="City name" formControlName="name">
+            <section formArrayName="places" style="border: 1px solid #ccc; padding: 5px;">
+              <b>Places: <button class="btn btn-default btn-link" type="button" (click)="fnOnAddPlace(city)">+ new City</button></b>
+              <div *ngFor="let place of fnGetPlace(city); let j = index" [formGroupName]="j">
+                <input type="text" class="form-control" placeholder="Place" formControlName="name">
+              </div>
+            </section>
+          </div>
+        </section>
+        <br>
+        <button class="btn btn-success" type="submit">Submit</button>
+      </form>
+    </section>
+
+  </div>
+</div>
+<hr>
+{{tripForm.value | json }}
