@@ -1,0 +1,1 @@
+Robocopy E:\UwAmp\www\all\Final\RohitSept\data\screenshots C:\Users\Rohit\Desktop\abc /MIR /FFT /Z /XA:H /W:5
